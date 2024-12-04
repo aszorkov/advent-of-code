@@ -70,11 +70,11 @@ func buildReport(data []int, args ...int) Report {
 			dataMinusIndex = append(dataMinusIndex, data[:i]...)
 			dataMinusIndex = append(dataMinusIndex, data[i + 1:]...)
 			fmt.Println("Retrying on: ", dataMinusIndex, "after removing indice [", i, "]")
-			resultMinusIndex := validateData(dataMinusIndex)
-			if resultMinusIndex.safe {
+			reportMinusIndex := buildReport(dataMinusIndex, args[0], args[1] + 1)
+			if reportMinusIndex.safe {
 				report.removed = append(report.removed, i)
-				report.direction = resultMinusIndex.direction
-				report.safe = resultMinusIndex.safe
+				report.direction = reportMinusIndex.direction
+				report.safe = reportMinusIndex.safe
 				complete = true
 			}
 		} else {
