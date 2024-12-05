@@ -23,6 +23,8 @@ Then we mark the report as unsafe if the difference is 0, less than -3 or greate
 
 Now we're given an extra piece of information that we can actually tolerate a single bad level in a given report. Essentially, if removing one of the items in the report would create a safe report then we'll accept it. If we can't create a safe report by removing any one item, then it is considered unsafe.
 
+### Approach
+
 While in part one we can build this out by simply iterating over each report one time, the first solution that jumps out to solve part two is recursive in nature.
 
 We'll create a loop over the levels in the report, starting at index 0. If the report is safe, we can break out of the loop and move to the next report.

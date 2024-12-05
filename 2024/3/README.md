@@ -1,6 +1,6 @@
 # Day 3
 
-For day 3, we are given an input which is meant to simulate instructions for a program, where the only instruction we need to support is a multiplication function, invoked by **exactly** `mul(x,y)`. 
+For day 3, we are given an input which is meant to simulate instructions for a program, where the only instruction we need to support is a multiplication function, invoked by **exactly** `mul(x,y)`.
 
 ## Part One
 
@@ -22,8 +22,11 @@ In part two we're informed that there are actually two more functions we can res
 
 ### Approach
 
-We should be able to solve this by using a regex to find all `mul()` instances which are between a `do()` on the left and a `don't()` on the right.
+We should be able to solve this by using another regex to find all blocks in the input which start with a `do()` and end with a `don't()`, then repeat the solution from part one on these "valid" blocks.
+
+`(?sm)(?:\A|do\(\)).*?(?:don't\(\)|\z)`
 
 ## Learnings
 
--
+- Golang's regex library doesn't support lookahead/lookbehind
+- Line terminators are evil. I had to refine my expression a few times as there was a newline in the middle of a block in my input, causing only half of the block to actually be matched
